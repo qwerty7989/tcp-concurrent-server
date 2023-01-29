@@ -1,3 +1,5 @@
+package TCPConcurrentSumServer;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -15,18 +17,18 @@ class EchoThread extends Thread {
     public void run() {
         /*
          * ? Problem Encounter:
-         * The index is not saved. It keeps return 0 everytime User enter number and 
+         *  The index is not saved. It keeps return 0 everytime User enter number and 
          * Client sent the request. 
          * 
          * ? What's really happen:
-         * The index is 0 because the "socket initiate" code block in reside in "while" loop.
+         *  The index is 0 because the "socket initiate" code block in reside in "while" loop.
          * Which cause the "socket" to "initiate" new socket everytime User enter number.
          * 
-         * The first clue is that on the Server-side, it produce "Waiting for connection"
+         *  The first clue is that on the Server-side, it produce "Waiting for connection"
          * everytime User enter number. Another is the "index" value is always 0.
          * 
          * ? Solution:
-         * Just re-oriented the code block, the while loop should not initiate these "fixed" 
+         *  Just re-oriented the code block, the while loop should not initiate these "fixed" 
          * variable. Like, Input/Output stream variable, and socket variable.
          * 
          * Status: Fixed
